@@ -1,0 +1,1 @@
+# smtp-subdomain-automation
