@@ -48,12 +48,6 @@ The script filters the following wordlists:
   - subdomains-top1-1000.txt
   - famous-subdomains.txt
 
-- **From `/usr/share/wordlists/`:**
-  - rockyou.txt
-  - directory-list-2.3-medium.txt
-  - directory-list-2.3-small.txt
-
-
 ## License
 
 This project is for educational purposes only. Use responsibly in authorized environments.
