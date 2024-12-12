@@ -1,30 +1,42 @@
 
 # SMTP DNS Toolkit
 
-A bash script for automating the filtering of SMTP-related keywords from various subdomain wordlists. It uses a provided SMTP keywords file to filter common subdomain wordlists and generate a filtered list.
+This bash script automates the process of finding and filtering SMTP server hosts that have webmail services available, allowing you to use them for SMTP checks. The script uses common subdomain wordlists, filters out relevant results based on SMTP-related keywords, and then performs a brute-force attack to extract valid SMTP hosts for a specified domain.
+
+## Key Features
+Subdomain Filtering: Filters subdomains using a provided list of SMTP-related keywords to identify potential webmail services.
+SMTP Keyword Matching: Uses a specific SMTP keyword file to filter subdomains from various wordlists, generating a refined list of potential SMTP servers.
+Brute-Force SMTP Host Extraction: After filtering, the script performs brute-force attempts on the target domain to extract valid SMTP hosts.
+
+## Requirements
+- Linux virtual machine/ Linux cloud VPS
+- bash
+- python3.x
+- A valid SMTP keywords file for filtering
+- Wordlist files (as listed above) must be present in their default locations
 
 ## How to Use
 
 1. Clone the repository (if applicable):
 
    ```bash
-   git clone https://github.com/your-username/smtp_dns_toolkit.git
-   cd smtp_dns_toolkit
+   git clone https://github.com/lyonzon2/smtp-subdomain-automation.git
+   cd smtp-subdomain-automation
    ```
 
 2. Make the script executable:
 
    ```bash
-   chmod +x filter_smtp_keywords.sh
+   chmod +x smtp_toolkit.sh
    ```
 
-3. Run the script with the path to your SMTP keywords file:
+3. Run the script:
 
    ```bash
-   ./filter_smtp_keywords.sh /path/to/smtp_keywords_file.txt
+   sudo ./smtp_toolkit.sh
    ```
 
-   This will generate the filtered results in a file named `smtp_filtered_keywords.txt`.
+   This will show you a dashboard for selecting required steps .
 
 ## Included Wordlists
 
@@ -35,18 +47,12 @@ The script filters the following wordlists:
   - subdomains-top10-1000.txt
   - subdomains-top1-1000.txt
   - famous-subdomains.txt
-  - filtered-subdomains.txt
 
 - **From `/usr/share/wordlists/`:**
   - rockyou.txt
   - directory-list-2.3-medium.txt
   - directory-list-2.3-small.txt
 
-## Requirements
-
-- bash
-- A valid SMTP keywords file for filtering
-- Wordlist files (as listed above) must be present in their default locations
 
 ## License
 
