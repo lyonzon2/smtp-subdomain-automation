@@ -24,7 +24,7 @@ display_menu() {
 # Function to install puredns
 install_puredns() {
     echo "Installing puredns..."
-    bash bash-script/install_puredns.sh && echo "puredns installed successfully!" || echo "Installation failed."
+    bash bash-scripts/install_puredns.sh && echo "puredns installed successfully!" || echo "Installation failed."
 }
 
 # Function to install wordlists
