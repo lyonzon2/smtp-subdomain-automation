@@ -68,6 +68,7 @@ install_puredns_and_massdns() {
 # Function to install wordlists using git clone
 install_wordlists() {
     echo "Cloning SecLists repository for wordlists..."
+    git config --global http.postBuffer 524288000
 
     # Clone the SecLists repository
     git clone https://github.com/danielmiessler/SecLists.git /usr/share/seclists
