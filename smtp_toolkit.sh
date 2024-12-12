@@ -67,17 +67,27 @@ install_puredns_and_massdns() {
 
 # Function to install wordlists using git clone
 install_wordlists() {
-    echo "Cloning SecLists repository for wordlists..."
-    git config --global http.postBuffer 524288000
+    echo "Checking if SecLists repository exists..."
 
-    # Clone the SecLists repository
-    git clone https://github.com/danielmiessler/SecLists.git /usr/share/seclists
-
-    # Check if the SecLists repository was cloned successfully
+    # Check if SecLists directory exists
     if [[ -d "/usr/share/seclists" ]]; then
-        echo "SecLists cloned successfully!"
+        echo "SecLists directory already exists, skipping clone."
     else
-        echo "SecLists cloning failed."
+        echo "Cloning SecLists repository for wordlists..."
+
+        # Set the Git buffer size to avoid issues with large repositories
+        git config --global http.postBuffer 524288000
+
+        # Clone the SecLists repository
+        git clone https://github.com/danielmiessler/SecLists.git /usr/share/seclists
+
+        # Check if the SecLists repository was cloned successfully
+        if [[ -d "/usr/share/seclists" ]]; then
+            echo "SecLists cloned successfully!"
+        else
+            echo "SecLists cloning failed. Please check your connection and try again."
+            return 1
+        fi
     fi
 
     echo "Wordlists installed successfully!"
