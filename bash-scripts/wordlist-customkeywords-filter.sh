@@ -25,10 +25,6 @@ wordlists=(
     "/usr/share/seclists/Discovery/DNS/subdomains-top10-1000.txt"
     "/usr/share/seclists/Discovery/DNS/subdomains-top1-1000.txt"
     "/usr/share/seclists/Discovery/DNS/famous-subdomains.txt"
-    "/usr/share/seclists/Discovery/DNS/filtered-subdomains.txt"
-    "/usr/share/wordlists/rockyou.txt"
-    "/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt"
-    "/usr/share/wordlists/dirbuster/directory-list-2.3-small.txt"
 )
 
 # Check if the wordlist files exist

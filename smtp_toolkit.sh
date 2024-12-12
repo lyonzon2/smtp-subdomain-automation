@@ -11,7 +11,7 @@ display_menu() {
     echo "======================================"
     echo "SMTP Toolkit Automation"
     echo "======================================"
-    echo "1. Install puredns"
+    echo "1. Install puredns and massdns"
     echo "2. Install Wordlists"
     echo "3. Generate SMTP Keywords (Basic)"
     echo "4. Generate SMTP Keywords (Pro)"
@@ -24,37 +24,61 @@ display_menu() {
 # Function to install puredns
 install_puredns() {
     echo "Installing puredns..."
-    bash bash-scripts/install_puredns.sh && echo "puredns installed successfully!" || echo "Installation failed."
+    bash bash-scripts/install_puredns.sh && echo "puredns installed successfully!" || echo "puredns installation failed."
 }
 
-# Function to install wordlists
+# Function to install massdns
+install_massdns() {
+    echo "Installing massdns..."
+
+    # Clone the massdns repository
+    git clone https://github.com/blechschmidt/massdns.git
+    cd massdns
+
+    # Build massdns
+    make
+
+    # Move massdns binary to a location in the PATH (optional but recommended)
+    sudo make install
+    rm massdns/ -rf
+    # Check if installation was successful
+    if command -v massdns &> /dev/null; then
+        echo "massdns installed successfully!"
+    else
+        echo "massdns installation failed."
+    fi
+
+    # Return to the original directory
+    cd ..
+}
+
+# Function to install both puredns and massdns
+install_puredns_and_massdns() {
+    echo "Installing puredns and massdns..."
+
+    # Install puredns
+    install_puredns
+
+    # Install massdns
+    install_massdns
+
+    echo "puredns and massdns installation completed!"
+}
+
+# Function to install wordlists using git clone
 install_wordlists() {
-    echo "Installing required wordlists..."
+    echo "Cloning SecLists repository for wordlists..."
 
-    # Install seclists
-    apt-get update
-    apt-get install -y seclists
+    # Clone the SecLists repository
+    git clone https://github.com/danielmiessler/SecLists.git /usr/share/seclists
 
-    # Check if wordlists directory exists
-    if [[ ! -d "/usr/share/wordlists" ]]; then
-        echo "Creating /usr/share/wordlists directory..."
-        mkdir -p /usr/share/wordlists
+    # Check if the SecLists repository was cloned successfully
+    if [[ -d "/usr/share/seclists" ]]; then
+        echo "SecLists cloned successfully!"
+    else
+        echo "SecLists cloning failed."
     fi
 
-    # Download and install rockyou.txt if not already installed
-    if [[ ! -f "/usr/share/wordlists/rockyou.txt" ]]; then
-        echo "Downloading rockyou.txt..."
-        apt-get install -y wordlists
-    fi
-
-    # Additional wordlists (example)
-    # Install other common wordlists like dirbuster
-    if [[ ! -f "/usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt" ]]; then
-        echo "Installing dirbuster wordlists..."
-        apt-get install -y dirbuster
-    fi
-
-    # Additional installation for any other wordlists you want
     echo "Wordlists installed successfully!"
 }
 
@@ -107,7 +131,7 @@ while true; do
     display_menu
     read -p "Choose an option: " choice
     case $choice in
-        1) install_puredns ;;
+        1) install_puredns_and_massdns ;;
         2) install_wordlists ;;
         3) generate_keywords_basic ;;
         4) generate_keywords_pro ;;
