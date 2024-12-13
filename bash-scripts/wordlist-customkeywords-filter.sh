@@ -22,9 +22,11 @@ fi
 # Define the specific wordlists
 wordlists=(
     "/usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt"
-    "/usr/share/seclists/Discovery/DNS/subdomains-top10-1000.txt"
-    "/usr/share/seclists/Discovery/DNS/subdomains-top1-1000.txt"
-    "/usr/share/seclists/Discovery/DNS/famous-subdomains.txt"
+    "/usr/share/seclists/Discovery/DNS/subdomains-top1million-20000.txt"
+    "/usr/share/seclists/Discovery/DNS/deepmagic.com-prefixes-top500.txt"
+    "/usr/share/seclists/Discovery/DNS/bug-bounty-program-subdomains-trickest-inventory.txt"
+    "/usr/share/seclists/Discovery/DNS/combined_subdomains.txt"
+    "/usr/share/seclists/Discovery/DNS/services-names.txt"
 )
 
 # Check if the wordlist files exist
