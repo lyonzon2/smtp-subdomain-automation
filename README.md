@@ -8,12 +8,13 @@ Subdomain Filtering: Filters subdomains using a provided list of SMTP-related ke
 SMTP Keyword Matching: Uses a specific SMTP keyword file to filter subdomains from various wordlists, generating a refined list of potential SMTP servers.
 Brute-Force SMTP Host Extraction: After filtering, the script performs brute-force attempts on the target domain to extract valid SMTP hosts.
 
-## Requirements
-- Linux virtual machine/ Linux cloud VPS
-- bash
-- python3.x
-- A valid SMTP keywords file for filtering
-- Wordlist files (as listed above) must be present in their default locations
+## Requirements  
+- Linux virtual machine/ Linux cloud VPS  
+- bash  
+- python3.x  
+- A valid SMTP keywords file for filtering  
+- Wordlist files (as listed above) must be present in their default locations  
+- The SMTP checker should only accept primary domains (e.g., `example.com` or `example.net`)
 
 ## How to Use
 
